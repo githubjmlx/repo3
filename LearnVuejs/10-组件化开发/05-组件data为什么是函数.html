@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+       
+        <cpn1></cpn1>
+        <cpn1></cpn1>
+        <cpn1></cpn1>
+ 
+    </div>
+<!-- 分离写法 -->
+<template id="cpn">
+    <div> 
+      <h2>当前计数:{{num}}</h2>
+      <button @click='add'>+</button>
+      <button @click='sub'>-</button>
+    </div>
+</template>
+
+<script src="./vue.js"></script>
+<script>   
+ 
+  Vue.component('cpn1',{
+        template:'#cpn',
+        //  每次新建组件都新建内存地址,防止数据共享
+        data(){
+            return{
+                num: 0
+            }
+        },
+        methods:{
+            add(){
+                this.num++
+            },
+            sub(){
+               this.num--
+            }
+        }
+    })
+ 
+    const app = new Vue({
+      el:'#app',
+      data:{
+       message:'你好啊'
+     },
+ 
+    })
+
+</script>
+    
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    [v-clock]{
+        display: none;
+    }
+</style>
+<body>
+    <div id="example">
+        <p ref="content">aiguigu.com</p>
+        <button @click='hint'>提示</button>
+        <p v-clock>{{msg}}</p>
+    </div>
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<script>
+    // alert("!!")
+    new Vue({
+      el:'#example',
+      data:{
+        msg:'尚硅谷',
+     },
+     methods:{
+        hint(){
+             alert(this.$refs.content.innerHTML)
+        }
+     }
+    })
+
+</script>
+    
+</body>
+</html>

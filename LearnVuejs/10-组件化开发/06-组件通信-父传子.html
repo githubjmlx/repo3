@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+       
+        <cpn  :ccc="movies"  :bbb="message"></cpn>
+      
+ 
+    </div>
+
+<template id="cpn">
+    <div>
+      {{ccc}}
+      {{bbb}}
+    </div>
+</template>
+
+<script src="./vue.js"></script>
+<script>    
+ 
+ 
+ 
+    const app = new Vue({
+      el:'#app',
+      data:{
+       message:'你好啊',
+       movies:['海王','海贼王','海尔兄弟']
+
+     },
+     components:{
+        cpn:{
+          template:'#cpn',
+        //   props:['ccc','bbb']
+        props:{
+            // 1.类型限制
+            // ccc:Array,
+            // bbb:String,
+            
+            //2 .提供默认值
+            bbb:{
+                type:String,
+                default:'默认值',
+                // required:cpn组件内联中必须绑定bbb
+                required:true
+            },
+            // 类型是对象或者数组时,默认值必须是一个函数,并返回
+            ccc:{
+                type:Array,
+                default(){
+                    return []
+                }
+
+            }
+        }
+        },
+       
+     
+     }
+    })
+
+</script>
+    
+</body>
+</html>

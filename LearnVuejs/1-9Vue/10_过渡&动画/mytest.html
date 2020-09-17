@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+.fade-enter-active, .fade-leave-active {
+    /*leave动画消失作用 enter动画显示作用 */
+  transition: opacity 1s;
+}
+.fade-leave-to,.fade-enter{
+  opacity: 0;
+}
+/* ------- */
+.move-enter-active{
+    transition: all 1s;
+}
+.move-leave-active{
+    transition: all 3s;
+}
+.move-leave-to,.move-enter{
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+</style>
+<body>
+<div id="test">
+    <button @click='isShow=!isShow'>toggle</button>
+    <transition name="fade">
+      <p v-show="isShow">hello</p>
+    </transition>
+</div>
+<div id="test2">
+    <button @click='isShow=!isShow'>toggle</button>
+    <transition name="move">
+      <p v-show="isShow">hello</p>
+    </transition>
+</div>
+
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<script>
+    new Vue({
+      el:'#test',
+      data:{
+        isShow:true
+      },
+    
+    })
+    new Vue({
+      el:'#test2',
+      data:{
+       isShow:true
+     }
+    })
+
+</script>
+
+    
+</body>
+</html>

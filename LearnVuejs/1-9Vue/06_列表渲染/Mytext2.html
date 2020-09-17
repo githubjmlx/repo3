@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<div id="test">
+    <input type="text" v-model="searchName">
+    <ul>
+        <li v-for="(p,index) in filterPersons" :key="index">
+         {{index}}--{{p.name}}--{{p.age}}
+        </li>
+    </ul>
+
+    <button @click="setOrderType(1)">年龄升序</button>
+    <button @click="setOrderType(2)">年龄降序</button>
+    <button @click="setOrderType(0)">原本顺序</button>
+</div>
+
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<script>
+    new Vue({
+      el:'#test',
+      data:{
+        searchName:'',
+        orderType: 0, 
+        persons:[
+            {name:'Tom',age:'18'},
+            {name:'Jack',age:'16'},
+            {name:'Bob',age:'19'},
+            {name:'Rose',age:'17'},
+       ]    
+     },
+     computed:{
+        filterPersons(){
+            const{searchName,persons,orderType} = this
+            // const searchName = this.searchName 
+            let fPersons;
+            fPersons = persons.filter(p => p.name.indexOf(searchName)!==-1)
+            // fPersons = persons.filter(function(p){
+            //     return p.name.indexOf(searchName)!== -1
+            // })         
+            if(orderType!==0){
+                fPersons.sort(function(a,b){
+                    if(orderType===1){
+                        return  a.age-b.age
+                    }else{
+                        return  b.age-a.age
+                    }
+                }
+                )       
+            }
+            return fPersons
+        }
+     },
+     methods:{
+         setOrderType(orderType){
+            this.orderType = orderType
+         }
+     }
+
+    })
+</script>
+    
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <cpn></cpn>
+
+
+  <cpn>
+<!-- 注意事项：
+这里需要注意的是message是所有你绑定属性的集合，也就是你写的：aa=“title”会当做message的属性来实现。
+当然这里message可以换做其它的名称。
+3、总结
+v-slot的出现是为了代替原有的slot和slot-scope
+简化了一些复杂的语法。
+一句话概括就是v-slot ：后边是插槽名称，=后边是组件内部绑定作用域值的映射。 -->
+
+    <template v-slot:footer="message">
+      <!--<span v-for="item in slot.data"> - {{item}}</span>-->
+      <span>{{message.aa.join(' - ')}}</span>
+    </template>
+  </cpn>
+
+   
+</div>
+
+<template id="cpn">
+  <div>
+    <!--:aa="pLanguages" 提取组件中的内容  -->
+    <slot name="footer" :aa="pLanguages">
+      <ul>
+        <li v-for="item in pLanguages">{{item}}</li>
+      </ul>
+    </slot>
+  </div>
+</template>
+<script src="./vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好啊'
+    },
+    components: {
+      cpn: {
+        template: '#cpn',
+        data() {
+          return {
+            pLanguages: ['JavaScript', 'C++', 'Java', 'C#', 'Python', 'Go', 'Swift']
+          }
+        }
+      }
+    }
+  })
+</script>
+
+
+</body>
+</html>
